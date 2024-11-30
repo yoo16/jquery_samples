@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h2 id="jp-title">都市</h2>
+    <ul id="jp-city">
+        <li class="city">Tokyo</li>
+        <li class="city">Yokohama</li>
+        <li class="city">Osaka</li>
+        <li class="city">Nagoya</li>
+        <li class="city">Kobe</li>
+    </ul>
+
+    <div>
+        <h2>親要素・子要素</h2>
+        <input type="text" value="">
+        <input type="text" value="">
+        <input type="text" value="">
+
+        <h2>親要素・子孫要素</h2>
+        <section>
+            <input type="text" value="">
+            <input type="text" value="">
+            <input type="text" value="">
+        </section>
+
+        <h2>name=price</h2>
+        <input type="text" name="price" value="100">
+        <input type="text" name="price" value="200">
+        <input type="text" name="price" value="300">
+        <input type="text" name="price" value="400">
+
+        <h2>input:hidden</h2>
+        <input type="hidden" name="user_id" value="0">
+
+        <h2>コンテンツフィルタ</h2>
+        <article>
+            <h3>タイトル</h3>
+            <div>本文</div>
+        </article>
+        <article>
+            <h3>タイトル</h3>
+            <p>本文</p>
+        </article>
+
+
+        <h2>フィルタ</h2>
+        <ul id="price_list">
+            <li><input type="text" value="100"></li>
+            <li><input type="text" value="200"></li>
+            <li><input type="text" value="300"></li>
+            <li><input type="text" value="400"></li>
+        </ul>
+    </div>
+
+    <script src="js/selector.js"></script>
+</body>
+
+</html>
