@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body class="font-sans p-4">
+    <h1 class="text-2xl font-bold mb-4">Event</h1>
+    <div id="result-event" class="p-3"></div>
+
+    <!-- ユーザー入力用テキストボックス -->
+    <div class="mb-4 flex space-x-2 items-center">
+        <input id="input-text" type="text" class="border border-gray-300 px-3 py-2 rounded">
+        <button id="click-button" class="bg-blue-500 text-white px-3 py-2 rounded">Click</button>
+    </div>
+
+    <select name="" id="select-list" class="p-2 border border-gray-300 space-y-2">
+        <option value="1">Select 1</option>
+        <option value="2">Select 2</option>
+        <option value="3">Select 3</option>
+    </select>
+
+    <ul id="item-list" class=my-3">
+        <li class="p-2">Item 1</li>
+        <li class="p-2">Item 2</li>
+        <li class="p-2">Item 3</li>
+    </ul>
+
+    <div class="my-3">
+        <div id="box" class="w-72 h-32 bg-gray-500 p-3 text-white"></div>
+        <button id="event-off-button" class="bg-blue-500 text-white px-3 py-2 rounded">Event Off</button>
+    </div>
+
+    <script src="js/event.js"></script>
+</body>
+
+</html>

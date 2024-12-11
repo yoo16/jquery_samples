@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration with Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">ログイン</h1>
+        <form id="user-registration-form" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <p id="email-error" class="text-red-500 text-sm hidden">Emailを入力してください。</p>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">パスワード</label>
+                <input type="password" id="password" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <p id="password-error" class="text-red-500 text-sm hidden">パスワードを6文字以上入力してください。</p>
+            </div>
+            <button onclick="auth()" type="button" id="register-button" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none">
+                ログイン
+            </button>
+        </form>
+        <div id="registration-result" class="mt-4 text-center text-green-600"></div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

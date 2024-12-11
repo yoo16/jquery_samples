@@ -7,3 +7,5 @@ document.addEventListener("DOMContentLoaded", function () {
 $(function () {
     alert("DOM読み込み完了");
 });
+
+alert("はじまるよ");
