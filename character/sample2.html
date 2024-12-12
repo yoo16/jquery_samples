@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class="fixed inset-0 overflow-hidden bg-white">
+    <div id="stage" class="absolute left-1/2 top-1/2 w-full h-full"></div>
+
+    <!-- モーダルウィンドウ -->
+    <div id="modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+        <div class="relative w-4/5 h-4/5 overflow-hidden">
+            <img id="modal-image" class="h-full w-auto mx-auto" src="" alt="Full Image">
+        </div>
+    </div>
+
+    <!-- JSファイル -->
+    <script src="js/data.js"></script>
+    <script src="js/app2.js"></script>
+</body>
+</html>

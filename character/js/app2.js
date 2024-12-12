@@ -1,5 +1,9 @@
 $(function () {
     const stage = $('#stage')
+    const modal = $('#modal');
+    const modalImage = $('#modal-image');
+    const closeModal = $('#close-modal');
+
     const items = [];
 
     // レイアウト関連定数
@@ -188,66 +192,28 @@ $(function () {
     }
 
     function createWorkElement(data) {
-        // 画像領域
         const work = $("<div>")
-            .addClass("work")
-            .attr("data-pos", { x: data.x, y: data.y, r: data.r });
+            .addClass("work absolute")
+            .attr("data-pos", JSON.stringify({ x: data.x, y: data.y, r: data.r }));
 
-        // リンク
-        const link = $("<a>").attr("href", data.href);
-        // 画像
         const image = $("<div>")
-            .addClass("image")
+            .addClass("image relative rounded-lg overflow-hidden z-10")
             .css("background-image", `url('${data.image}')`)
-            .on({
-                mouseover: function () {
-                    $(this).animate({ opacity: 0.8 }, 300);
-                },
-                mouseout: function () {
-                    $(this).animate({ opacity: 1.0 }, 300);
-                },
-                click: function () {
-                    // クリック時にモーダルウィンドウでフル表示
-                    showModal(data.image);
-                }
+            .on("click", function () {
+                modalImage.attr("src", data.image);
+                modal.removeClass("hidden").fadeIn(300);
             });
 
+        const link = $("<a>").attr("href", data.href);
         link.append(image);
         work.append(link);
-
         return work;
     }
 
-    function showModal(imageUrl) {
-        // モーダル背景
-        const modalOverlay = $("<div>")
-            .addClass("modal-overlay")
-
-        // モーダルウィンドウ
-        const modalContent = $("<div>")
-            .addClass("modal-content")
-            .on("click", function () {
-                modalOverlay.fadeOut(300, function () {
-                    $(this).remove();
-                });
-                modalContent.fadeOut(300, function () {
-                    $(this).remove();
-                });
-            });
-
-        // フルサイズ画像
-        const fullImage = $("<img>")
-            .addClass("full-image")
-            .attr('src', imageUrl)
-
-        // モーダル構造を組み立て
-        modalContent.append(fullImage);
-        $("body").append(modalOverlay).append(modalContent);
-
-        // モーダル表示
-        modalOverlay.fadeIn(300);
-        modalContent.fadeIn(300);
-    }
+    // モーダル背景クリックで閉じる処理
+    modal.on("click", function (e) {
+        $(this).fadeOut(300);
+    });
 
     // イベントリスナー
     document.addEventListener('wheel', onWheel, { passive: false });
