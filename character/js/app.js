@@ -7,6 +7,8 @@ $(function () {
     const maxRow = 2;
     const wheelSpeed = 0.5;
     const vRate = 0.95;
+    // ランダムサイズフラグ
+    const isRandomSize = false;
 
     // ポインターダウン判別
     let pointerDown = false;
@@ -126,6 +128,11 @@ $(function () {
 
         // 画像位置調整
         items.forEach(item => {
+            // ランダムサイズ
+            if (isRandomSize) {
+                item.position.r = 0.6 + Math.random() * 0.4;
+            }
+
             const holeR = item.position.r * R;
             item.image.style.width = holeR + "px";
             item.image.style.height = holeR + "px";
