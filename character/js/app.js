@@ -11,10 +11,13 @@ $(function () {
     // ポインターダウン判別
     let pointerDown = false;
 
-    let farX = 0, farY = 0;
     let H = 0, W = 0, R = 0;
-    let X = 0, Y = 0, ioX = 0, ioY = 0, idealX = 0, idealY = 0;
-    let vx = 0, vy = 0, lastX = 0, lastY = 0;
+    let X = 0, Y = 0;
+    let scrollX = 0, scrollY = 0;
+    let offsetX = 0, offsetY = 0;
+    let targetX = 0, targetY = 0;
+    let lastX = 0, lastY = 0;
+    let vx = 0, vy = 0
 
     worksData.forEach(data => {
         // アイテム作成
@@ -71,8 +74,8 @@ $(function () {
     function onResize() {
         const lastR = R;
         const ratio = R / lastR;
-        idealX *= ratio;
-        idealY *= ratio;
+        targetX *= ratio;
+        targetY *= ratio;
         X *= ratio;
         Y *= ratio;
         reset();
@@ -87,9 +90,10 @@ $(function () {
         W = window.innerWidth;
         H = window.innerHeight;
 
-        // 表示領域の中央を基準にしたオフセット値(ioX, ioY)
-        ioX = -W * 0.5;
-        ioY = -H * 0.5;
+        // 表示領域の中央を基準にしたオフセット値(offsetX, offsetY)
+        offsetX = -W * 0.5;
+        offsetY = -H * 0.5;
+
         // アイテムの位置やサイズの基準となる値
         R = Math.min(W * 0.5, H * 0.5);
 
@@ -100,30 +104,32 @@ $(function () {
         });
 
         // スクロール範囲の計算
-        farX = maxCol * R;
-        farY = maxRow * R;
+        scrollX = maxCol * R;
+        scrollY = maxRow * R;
 
         // ウィンドウ比率による調整
-        // 横方向: wfac
-        // 縦方向: hfac
-        const wfac = W / (H * (maxCol - 1));
-        const hfac = H / (W * (maxRow - 1));
+        // 横方向: wRate 
+        // 縦方向: hRate 
+        const wRate = W / (H * (maxCol - 1));
+        const hRate = H / (W * (maxRow - 1));
 
         // 横方向または縦方向の比率が1を超える場合、アイテム座標調整&スクロール範囲拡大
-        if (wfac > 1) {
-            items.forEach(item => item.position.x *= wfac);
-            farX *= wfac;
-        } else if (hfac > 1) {
-            items.forEach(item => item.position.y *= hfac);
-            farY *= hfac;
+        if (wRate > 1) {
+            // 横方向
+            items.forEach(item => item.position.x *= wRate);
+            scrollX *= wRate;
+        } else if (hRate > 1) {
+            // 縦方向
+            items.forEach(item => item.position.y *= hRate);
+            scrollY *= hRate;
         }
 
+        // 画像位置調整
         items.forEach(item => {
             const holeR = item.position.r * R;
             item.image.style.width = holeR + "px";
             item.image.style.height = holeR + "px";
-            item.image.style.backgroundSize = "auto";
-            item.image.style.backgroundPosition = ioX + "px " + ioY + "px";
+            item.image.style.backgroundPosition = offsetX + "px " + offsetY + "px";
         });
     }
 
@@ -133,13 +139,13 @@ $(function () {
         vy *= vRate;
 
         // 目標位置
-        idealX -= vx;
-        idealY -= vy;
+        targetX -= vx;
+        targetY -= vy;
 
-        if (idealX !== X || idealY !== Y) {
+        if (targetX !== X || targetY !== Y) {
             // 現在の位置を目標位置に近づける
-            X += (idealX - X) * 0.5;
-            Y += (idealY - Y) * 0.5;
+            X += (targetX - X) * 0.5;
+            Y += (targetY - Y) * 0.5;
 
             // ステージ全体の位置を更新
             $("#stage").css("transform", `translate(${X}px, ${Y}px)`);
@@ -151,20 +157,20 @@ $(function () {
                 let frameSize = item.position.r * R * 0.5;
 
                 // アイテムが一定範囲を超えた場合に再配置（X軸）
-                if (Math.round((frameX + frameSize) / farX) !== 0) {
-                    item.position.x -= (Math.round((frameX + frameSize)) > 0) ? farX / R : -farX / R;
+                if (Math.round((frameX + frameSize) / scrollX) !== 0) {
+                    item.position.x -= (Math.round((frameX + frameSize)) > 0) ? scrollX / R : -scrollX / R;
                     $(item.work).css("left", `${item.position.x * R}px`);
                     frameX = X + item.position.x * R;
                 }
 
                 // アイテムが一定範囲を超えた場合に再配置（Y軸）
-                if (Math.round((frameY + frameSize) / farY) !== 0) {
-                    item.position.y -= (Math.round((frameY + frameSize)) > 0) ? farY / R : -farY / R;
+                if (Math.round((frameY + frameSize) / scrollY) !== 0) {
+                    item.position.y -= (Math.round((frameY + frameSize)) > 0) ? scrollY / R : -scrollY / R;
                     $(item.work).css("top", `${item.position.y * R}px`);
                     frameY = Y + item.position.y * R;
                 }
                 // 背景位置の更新
-                $(item.image).css("background-position", `${ioX - frameX}px ${ioY - frameY}px`);
+                $(item.image).css("background-position", `${offsetX - frameX}px ${offsetY - frameY}px`);
             });
         }
 
@@ -173,11 +179,14 @@ $(function () {
     }
 
     function createWorkElement(data) {
+        // 画像領域
         const work = $("<div>")
             .addClass("work")
             .attr("data-pos", { x: data.x, y: data.y, r: data.r });
 
+        // リンク
         const link = $("<a>").attr("href", data.href);
+        // 画像
         const image = $("<div>")
             .addClass("image")
             .css("background-image", `url('${data.image}')`)
@@ -204,16 +213,6 @@ $(function () {
         // モーダル背景
         const modalOverlay = $("<div>")
             .addClass("modal-overlay")
-            .css({
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                background: "rgba(0, 0, 0, 0.8)",
-                zIndex: 1000,
-                display: "none"
-            });
 
         // モーダルウィンドウ
         const modalContent = $("<div>")
@@ -228,9 +227,9 @@ $(function () {
             });
 
         // フルサイズ画像
-        const fullImage = $("<div>")
+        const fullImage = $("<img>")
             .addClass("full-image")
-            .css({ backgroundImage: `url('${imageUrl}')`, });
+            .attr('src', imageUrl)
 
         // モーダル構造を組み立て
         modalContent.append(fullImage);
