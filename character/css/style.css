@@ -31,7 +31,7 @@ a {
 
 .image {
     position: relative;
-    border-radius: 10%;
+    /* border-radius: 10%; */
     /* border-radius: 50%; */
     background-size: auto;
     overflow: hidden;

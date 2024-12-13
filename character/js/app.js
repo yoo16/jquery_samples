@@ -193,8 +193,6 @@ $(function () {
             .addClass("work")
             .attr("data-pos", { x: data.x, y: data.y, r: data.r });
 
-        // リンク
-        const link = $("<a>").attr("href", data.href);
         // 画像
         const image = $("<div>")
             .addClass("image")
@@ -208,12 +206,15 @@ $(function () {
                 },
                 click: function () {
                     // クリック時にモーダルウィンドウでフル表示
-                    showModal(data.image);
+                    if (data.href) {
+                        location.href = data.href;
+                    } else {
+                        showModal(data.image);
+                    }
                 }
             });
 
-        link.append(image);
-        work.append(link);
+        work.append(image);
 
         return work;
     }

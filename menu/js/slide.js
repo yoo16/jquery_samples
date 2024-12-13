@@ -1,5 +1,6 @@
 $(function () {
     const $menuButton = $('#menu-button');
+    const $menuLink = $('#slide-menu a[href^="#"]');
     const $slideMenu = $('#slide-menu');
     const headerHeight = $('#header-menu').outerHeight() + 10;
 
@@ -22,7 +23,7 @@ $(function () {
         slideMenu();
     });
 
-    $('#slide-menu a[href^="#"]').on('click', function (e) {
+    $menuLink.on('click', function (e) {
         e.preventDefault();
         slideMenu();
         const target = $(this.getAttribute('href'));
