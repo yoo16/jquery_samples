@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body class="bg-yellow-400 font-sans antialiased">
+  <div id="wrapper" class="max-w-5xl mx-auto bg-white">
+    <header class="bg-gray-700 text-yellow-400 text-center py-16">
+      <h1 class="text-4xl font-bold">Horizontal Dropdown Menu</h1>
+    </header>
+    <nav class="bg-gray-800 text-yellow-400">
+      <ul id="nav" class="flex justify-between">
+        <li class="w-[25%] relative group">
+          <a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu1</a>
+          <ul class="absolute hidden left-0 bg-gray-800 text-yellow-400 w-full">
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu1a</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu1b</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu1c</a></li>
+          </ul>
+        </li>
+        <li class="w-[25%] relative group">
+          <a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu2</a>
+          <ul class="absolute hidden left-0 bg-gray-800 text-yellow-400 w-full">
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu2a</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu2b</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu2c</a></li>
+          </ul>
+        </li>
+        <li class="w-[25%] relative group">
+          <a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu3</a>
+          <ul class="absolute hidden left-0 bg-gray-800 text-yellow-400 w-full">
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu3a</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu3b</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu3c</a></li>
+          </ul>
+        </li>
+        <li class="w-[25%] relative group">
+          <a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu4</a>
+          <ul class="absolute hidden left-0 bg-gray-800 text-yellow-400 w-full">
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu4a</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu4b</a></li>
+            <li><a href="#" class="block w-full px-4 py-3 hover:bg-gray-600">Menu4c</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <main class="p-8">
+    </main>
+  </div>
+
+  <script src="js/dropdown_menu.js"></script>
+</body>
+
+</html>
