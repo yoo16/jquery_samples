@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,30 +9,40 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body class="bg-black">
+
+<body>
     <header id="header" class="bg-gray-800 text-white text-center py-16">
         <h1 class="text-4xl font-bold">Cafe JS</h1>
     </header>
 
-    <section id="section1" class="relative flex items-center justify-center h-screen text-white overflow-hidden">
-        <h2 class="opacity-0 absolute flex items-center justify-center text-4xl">心ほどける、甘くて香ばしいブレイクタイム</h2>
+    <section id="section1"
+        class="bg-white relative flex items-center justify-center h-screen overflow-hidden">
+        <h2 class="opacity-0 text-4xl text-black font-bold flex items-center justify-center">心ほどける、甘くて香ばしいブレイクタイム</h2>
     </section>
 
     <section id="section2" class="relative flex items-center justify-center h-screen overflow-hidden">
         <img class="opacity-0 absolute w-full h-full object-cover" src="images/cafe-shop-1.jpg">
-        <h2 class="opacity-0 absolute flex items-center justify-center text-white text-shadow-md text-4xl">Welcome JS Cafe</h2>
+        <h2 class="opacity-0 text-4xl font-bold absolute flex items-center justify-center text-white text-shadow-md">
+            Welcome to JS Cafe</h2>
     </section>
 
     <section id="section3" class="relative flex items-center justify-center h-screen overflow-hidden">
-        <h2 class="opacity-0 absolute flex items-center justify-center text-white text-shadow-md text-4xl">至福のパンケーキ</h2>
+        <h2 class="opacity-0 absolute text-4xl space-y-4 text-center">
+            <p>濃厚なチョコレートと</p>
+            <p>クリーミーなホワイトクリームの</p>
+            <p>絶妙なバランス</p>
+        </h2>
     </section>
 
     <section id="section4" class="relative flex items-center justify-center h-screen overflow-hidden">
         <img class="opacity-0 absolute w-full h-full object-cover" src="images/item-1.jpg">
     </section>
 
-    <section id="section5" class="relative flex items-center justify-center h-screen overflow-hidden">
-        <h2 class="opacity-0 absolute flex items-center justify-center text-white text-shadow-md text-4xl">甘いクリームと新鮮なイチゴをトッピング</h2>
+    <section id="section5" class="bg-white relative flex items-center justify-center h-screen overflow-hidden">
+        <h2 class="opacity-0 absolute text-black text-4xl space-y-4 text-center">
+            <p>甘く香るメイプルシロップと</p>
+            <p>新鮮なイチゴをトッピング</p>
+        </h2>
     </section>
 
     <section id="section6" class="relative flex items-center justify-center h-screen overflow-hidden">
@@ -40,4 +51,5 @@
 
     <script src="js/app.js"></script>
 </body>
+
 </html>

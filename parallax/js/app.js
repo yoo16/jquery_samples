@@ -9,6 +9,9 @@ $(document).ready(function () {
         { selector: "#section6 img", callback: slideRight },
     ];
 
+    const windowHeight = $(window).height();
+    const offset = windowHeight / 3;
+
     $(window).on("scroll", function () {
         elementsToShow.forEach(({ selector, callback }) => {
             showContents(selector, callback);
@@ -22,9 +25,8 @@ $(document).ready(function () {
         if (target.length === 0) return;
 
         const top = target.offset().top;
-        const windowHeight = $(window).height();
 
-        if (scrollTop + windowHeight > top + (windowHeight / 2) && target.hasClass('opacity-0')) {
+        if (scrollTop + windowHeight > top + offset && target.hasClass('opacity-0')) {
             target.removeClass('opacity-0');
             if (callback) callback(target)
         }
@@ -32,7 +34,7 @@ $(document).ready(function () {
 
     function fadeIn(target) {
         target.css({ opacity: 0 })
-            .animate({ opacity: 1 }, 1000)
+            .animate({ opacity: 1 }, 2000)
     }
 
     function slideIn(target) {
@@ -46,13 +48,13 @@ $(document).ready(function () {
         const end = target.css('left');
         console.log(start, end)
         target.css({ opacity: 0, left: start })
-            .animate({ opacity: 1, left: end }, 500);
+            .animate({ opacity: 1, left: end }, 800);
     }
 
     function slideRight(target) {
         const start = $(window).width() * 0.5;
         const end = target.css('left');
         target.css({ opacity: 0, left: -start })
-            .animate({ opacity: 1, left: end }, 500);
+            .animate({ opacity: 1, left: end }, 800);
     }
 });
