@@ -3,10 +3,10 @@ $(document).ready(function () {
         { selector: "#section1 h2", callback: fadeIn },
         { selector: "#section2 img", callback: slideIn },
         { selector: "#section2 h2", callback: fadeIn },
-        { selector: "#section3 h2", callback: fadeIn },
-        { selector: "#section4 img", callback: slideLeft },
-        { selector: "#section5 h2", callback: fadeIn },
-        { selector: "#section6 img", callback: slideRight },
+        { selector: "#section3 h2", callback: slideLeft },
+        { selector: "#section4 img", callback: fadeIn },
+        { selector: "#section5 h2", callback: slideRight },
+        { selector: "#section6 img", callback: fadeIn },
     ];
 
     const windowHeight = $(window).height();
@@ -52,9 +52,9 @@ $(document).ready(function () {
     }
 
     function slideRight(target) {
-        const start = $(window).width() * 0.5;
+        const start = -$(window).width() * 0.5;
         const end = target.css('left');
-        target.css({ opacity: 0, left: -start })
+        target.css({ opacity: 0, left: start })
             .animate({ opacity: 1, left: end }, 800);
     }
 });
