@@ -1,173 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax World</title>
+    <title>Parallax Cafe</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* フェードインエフェクト */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        /* テキストや画像のスライドエフェクト */
-        .slide-in {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-    </style>
+    <link rel="stylesheet" href="css/app.css">
 </head>
 
-<body class="overflow-x-hidden">
-    <!-- Nav Menu -->
-    <nav id="nav" class="z-20 py-6 fixed top-0 w-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-md">
-        <h1 class="px-6 text-4xl text-black font-bold">
-            <a href="parallax2.html">Parallax World</a>
-        </h1>
-        <ul class="flex justify-end text-gray-800 font-bold gap-6 px-4">
-            <li class="relative group">
-                <a href="#topic" class="block w-full px-4 hover:text-sky-500">Topics</a>
-            </li>
-            <li class="relative group">
-                <a href="#story" class="block w-full px-4 hover:text-sky-500">Story</a>
-            </li>
-            <li class="relative group">
-                <a href="#characters" class="block w-full px-4 hover:text-sky-500">Characters</a>
-            </li>
-        </ul>
-    </nav>
+<body>
+    <header id="header" class="bg-gray-800 text-white text-center py-16">
+        <h1 class="text-4xl font-bold">Parallax Cafe</h1>
+    </header>
 
-    <!-- Hero Section with Video Background -->
-    <section id="video" class="h-screen flex items-center justify-center text-white bg-white relative overflow-hidden">
-        <video class="fixed top-0 left-0 w-full h-full object-cover" autoplay muted loop>
-            <source src="videos/video1.mp4" type="video/mp4">
-        </video>
-        <h1
-            id="copy"
-            class="type-writer z-10 text-6xl font-bold py-6 px-16 bg-white bg-opacity-30 backdrop-filter backdrop-blur-md rounded-2xl">
-        </h1>
+    <section id="section1" class="bg-white relative flex items-center justify-center h-screen overflow-hidden">
+        <h2 class="opacity-0 text-4xl text-black font-bold flex items-center justify-center">心ほどける、甘くて香ばしいブレイクタイム</h2>
     </section>
 
-    <!-- Topics Section -->
-    <section id="topic"
-        class="z-10 relative h-screen text-black py-6 bg-orange-500 text-white bg-opacity-80 backdrop-filter backdrop-blur-md fade-in">
-        <h2 class="text-4xl font-semibold my-4 text-center p-6">Topics</h2>
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-6">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 transform transition-transform hover:scale-105 fade-in">
-                    <img src="images/character_1.png" alt="Character 1" class="mx-auto mb-4 rounded-lg">
-                    <h3 class="text-xl font-bold mb-2 text-black">Topic 1</h3>
-                    <p class="text-gray-600">Description of the first Topic offered.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 transform transition-transform hover:scale-105 fade-in">
-                    <img src="images/character_2.png" alt="Topic 2" class="mx-auto mb-4 rounded-lg">
-                    <h3 class="text-xl font-bold mb-2 text-black">Topic 2</h3>
-                    <p class="text-gray-600">Description of the second Topic offered.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 transform transition-transform hover:scale-105 fade-in">
-                    <img src="images/character_3.png" alt="Topic 3" class="mx-auto mb-4 rounded-lg">
-                    <h3 class="text-xl font-bold mb-2 text-black">Topic 3</h3>
-                    <p class="text-gray-600">Description of the third Topic offered.</p>
-                </div>
-            </div>
-        </div>
+    <section id="section2" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <img class="opacity-0 absolute w-full h-full object-cover" src="images/cafe-shop-1.jpg">
+        <h2 class="opacity-0 py-6 px-16 text-4xl font-bold text-white bg-black bg-opacity-60 backdrop-filter backdrop-blur-md">
+            Welcome to Parallax Cafe</h2>
     </section>
 
-
-    <!-- Parallax Image Section -->
-    <section id="story" class="z-10 relative parallax-bg h-screen text-center text-white fade-in"
-        style="background-image: url('images/cafe-shop-1.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
-        <div class="z-10 relative h-screen py-6 bg-teal-500 bg-opacity-80 backdrop-filter backdrop-blur-md">
-            <h2 class="text-4xl font-semibold my-4">Story</h2>
-            <p class="text-lg max-w-2xl mx-auto py-6 slide-in">
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-            </p>
-        </div>
+    <section id="section3" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <h2 class="opacity-0 absolute text-4xl text-center font-bold space-y-4">
+            <p>濃厚なチョコレートと</p>
+            <p>クリーミーなホワイトクリームの</p>
+            <p>絶妙なバランス</p>
+        </h2>
     </section>
 
-    <!-- Characters Section -->
-    <section id="characters"
-        class="z-10 relative h-full text-black py-6 bg-black text-white bg-opacity-60 backdrop-filter backdrop-blur-md">
-        <h2 class="text-4xl font-semibold text-center py-10 fade-in">Characters</h2>
-        <div class="container mx-auto px-6 slide-in">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-10">
-                <div>
-                    <img src="images/character_1.png" alt="Character 1"
-                        class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
-                    <h3 class="text-2xl font-bold mb-2">Character 1</h3>
-                    <p class="">Description of the first Character offered.</p>
-                </div>
-                <div>
-                    <img src="images/character_2.png" alt="Character 2"
-                        class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
-                    <h3 class="text-2xl font-bold mb-2">Character 2</h3>
-                    <p class="">Description of the second Character offered.</p>
-                </div>
-                <div>
-                    <img src="images/character_3.png" alt="Character 3"
-                        class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
-                    <h3 class="text-2xl font-bold mb-2">Character 3</h3>
-                    <p class="">Description of the third Character offered.</p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-10">
-                <div>
-                    <img src="images/character_4.png" alt="Character 1"
-                        class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
-                    <h3 class="text-2xl font-bold mb-2">Character 1</h3>
-                    <p class="">Description of the first Character offered.</p>
-                </div>
-                <div>
-                    <img src="images/character_5.png" alt="Character 2"
-                        class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
-                    <h3 class="text-2xl font-bold mb-2">Character 2</h3>
-                    <p class="">Description of the second Character offered.</p>
-                </div>
-                <div>
-                    <img src="images/character_6.png" alt="Character 3"
-                        class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
-                    <h3 class="text-2xl font-bold mb-2">Character 3</h3>
-                    <p class="">Description of the third Character offered.</p>
-                </div>
-            </div>
-        </div>
+    <section id="section4" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <img class="opacity-0 absolute w-full h-full object-cover" src="images/item-1.jpg">
     </section>
-
-    <!-- Footer -->
-    <footer class="z-10 relative h-32 bg-black text-white flex items-center justify-center">
-        <p>&copy; 2024 Your Website</p>
-    </footer>
 
     <script src="js/parallax2.js"></script>
 </body>
