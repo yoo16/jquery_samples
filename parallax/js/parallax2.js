@@ -1,36 +1,56 @@
 $(document).ready(function () {
-    const offset = 600; // オフセット調整値
+    const offset = 500; // オフセット調整値
+
+    const $copy = $('#copy');
+    let copyText = 'Welcome to Parallax World';
+    const typingSpeed = 100;
+    let typingIndex = 0;
+
     const fadeElements = $('.fade-in');
     const slideElements = $('.slide-in');
     const parallaxElements = $('.parallax-bg');
     const $menuLink = $('#nav a[href^="#"]');
     const headerHeight = $('#nav').outerHeight();
 
-    function fadeIn(target, scrollY) {
-        // スクロール割合を計算
+    // スクロール割合を計算
+    function getProgress(target, scrollY) {
         const elementTop = target.offset().top;
-        var progress = (scrollY - 200) / (elementTop);
+        const progress = Math.min(1, Math.max(0, (scrollY - elementTop + offset) / $(window).height()));
         if (progress < 0) progress = 0;
         if (progress > 1) progress = 1;
+        return progress;
+    }
 
+    function fadeIn(target, scrollY) {
+        const progress = getProgress(target, scrollY)
         // スクロールの割合に基づいてopacityを設定（0〜1の範囲にクランプ）
         if (progress > 0 && progress <= 1) {
-            // console.log('progress: ', progress, target.text(), scrollY, elementTop)
             target.css({ opacity: progress });
         }
     }
 
     function slideIn(target, scrollY) {
-        const elementTop = target.offset().top;
-        const progress = Math.min(1, Math.max(0, (scrollY - elementTop + offset) / $(window).height()));
-        const translateX = (1 - progress) * offset;
-        target.css({
-            opacity: progress, // フェードインも同時に適用
-            transform: `translateX(${translateX}px)`,
-        });
+        const progress = getProgress(target, scrollY)
+        if (progress > 0 && progress <= 1) {
+            const translateX = (1 - progress) * offset;
+            target.css({
+                opacity: progress,
+                transform: `translateX(${translateX}px)`,
+            });
+        }
+    }
+
+    function typeWriter() {
+        if (typingIndex < copyText.length) {
+            const currentText = $copy.text();
+            $copy.text(currentText + copyText[typingIndex]);
+            typingIndex++;
+            setTimeout(typeWriter, typingSpeed);
+        }
     }
 
 
+    // スクロールイベントハンドラ
     const handleScroll = () => {
         const scrollY = $(window).scrollTop() + offset;
 
@@ -66,4 +86,6 @@ $(document).ready(function () {
 
     // 初期実行
     handleScroll();
+    $copy.text('');
+    typeWriter();
 });
