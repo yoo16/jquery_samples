@@ -4,6 +4,10 @@ $(function () {
     const $slideMenu = $('#slide-menu');
     const headerHeight = $('#header-menu').outerHeight() + 10;
 
+    $menuButton.on('click', function () {
+        slideMenu();
+    });
+
     function initMenu() {
         $slideMenu.css({
             transform: 'translateX(-100%)',
@@ -19,10 +23,7 @@ $(function () {
         $slideMenu.animate({ marginLeft: x }, 300);
     }
 
-    $menuButton.on('click', function () {
-        slideMenu();
-    });
-
+    // スムーススクロール
     $menuLink.on('click', function (e) {
         e.preventDefault();
         slideMenu();

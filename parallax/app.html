@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パララックスレイアウト</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="bg-black">
+    <header id="header" class="bg-gray-800 text-white text-center py-16">
+        <h1 class="text-4xl font-bold">Cafe JS</h1>
+    </header>
+
+    <section id="section1" class="relative flex items-center justify-center h-screen text-white overflow-hidden">
+        <h2 class="opacity-0 absolute flex items-center justify-center text-4xl">心ほどける、甘くて香ばしいブレイクタイム</h2>
+    </section>
+
+    <section id="section2" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <img class="opacity-0 absolute w-full h-full object-cover" src="images/cafe-shop-1.jpg">
+        <h2 class="opacity-0 absolute flex items-center justify-center text-white text-shadow-md text-4xl">Welcome JS Cafe</h2>
+    </section>
+
+    <section id="section3" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <h2 class="opacity-0 absolute flex items-center justify-center text-white text-shadow-md text-4xl">至福のパンケーキ</h2>
+    </section>
+
+    <section id="section4" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <img class="opacity-0 absolute w-full h-full object-cover" src="images/item-1.jpg">
+    </section>
+
+    <section id="section5" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <h2 class="opacity-0 absolute flex items-center justify-center text-white text-shadow-md text-4xl">甘いクリームと新鮮なイチゴをトッピング</h2>
+    </section>
+
+    <section id="section6" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <img class="opacity-0 absolute w-full h-full object-cover" src="images/item-2.jpg">
+    </section>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
