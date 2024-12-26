@@ -250,7 +250,7 @@ $(function () {
         modalContent.fadeIn(300);
     }
 
-    // イベントリスナー
+    // イベントリスナー(jQueryのイベント登録はバグが発生)
     document.addEventListener('wheel', onWheel, { passive: false });
     document.addEventListener('pointerdown', onPointerDown);
     document.addEventListener('pointermove', onPointerMove, { passive: false });

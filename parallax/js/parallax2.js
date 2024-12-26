@@ -36,9 +36,8 @@ $(document).ready(function () {
     }
 
     function slideIn(target) {
-        const width = target.width();
         target.css({ width: 0 })
-            .animate({ opacity: 1, width: width }, 1000)
+            .animate({ opacity: 1, width: '100%' }, 1000)
     }
 
     function slideLeft(target) {
