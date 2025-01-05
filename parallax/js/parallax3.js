@@ -1,38 +1,54 @@
 $(document).ready(function () {
-    const offset = 500; // オフセット調整値
+    // オフセット調整値
+    const slideOffset = 700;
+    const scrollOffset = 800;
 
+    //  catchコピー
     const $copy = $('#copy');
     let copyText = 'Welcome to Parallax World';
     const typingSpeed = 100;
     let typingIndex = 0;
 
+    // 各種Element
     const fadeElements = $('.fade-in');
-    const slideElements = $('.slide-in');
-    const parallaxElements = $('.parallax-bg');
+    const slideElements = $('.slide-in-y');
+    const animationElements = $('.css-animation');
     const $menuLink = $('#nav a[href^="#"]');
     const headerHeight = $('#nav').outerHeight();
 
-    // スクロール割合を計算
+    // スクロール量とターゲットコンテンツの進行割合計算
     function getProgress(target, scrollY) {
         const elementTop = target.offset().top;
-        const progress = Math.min(1, Math.max(0, (scrollY - elementTop + offset) / $(window).height()));
+        const progress = Math.min(1, Math.max(0, (scrollY - elementTop + scrollOffset) / $(window).height()));
         if (progress < 0) progress = 0;
         if (progress > 1) progress = 1;
         return progress;
     }
 
+    function cssAnimation(target, scrollY) {
+        const progress = getProgress(target, scrollY)
+        if (progress > 0) {
+            target.addClass('is-active');
+        } else {
+            target.removeClass('is-active');
+        }
+    }
+
+    // フェードイン
     function fadeIn(target, scrollY) {
         const progress = getProgress(target, scrollY)
-        // スクロールの割合に基づいてopacityを設定（0〜1の範囲にクランプ）
         if (progress > 0 && progress <= 1) {
             target.css({ opacity: progress });
         }
     }
 
-    function slideIn(target, scrollY) {
-        const progress = getProgress(target, scrollY)
-        if (progress > 0 && progress <= 1) {
-            const translateX = (1 - progress) * offset;
+    // スライドイン
+    function slideInX(target, scrollY) {
+        var progress = getProgress(target, scrollY)
+        progress *= 2;
+        if (progress > 0) {
+            var translateX = (1 - progress);
+            if (translateX < 0) translateX = 0;
             target.css({
                 opacity: progress,
                 transform: `translateX(${translateX}px)`,
@@ -40,6 +56,21 @@ $(document).ready(function () {
         }
     }
 
+    function slideInY(target, scrollY) {
+        var progress = getProgress(target, scrollY + slideOffset);
+        // progress += 0.3;
+        if (progress > 0) {
+            var translateY = (1 - progress);
+            if (translateY < 0) translateY = 0;
+            console.log(progress)
+            target.css({
+                opacity: progress,
+                transform: `translateY(${translateY}px)`,
+            });
+        }
+    }
+
+    // タイプライター
     function typeWriter() {
         if (typingIndex < copyText.length) {
             const currentText = $copy.text();
@@ -52,20 +83,18 @@ $(document).ready(function () {
 
     // スクロールイベントハンドラ
     const handleScroll = () => {
-        const scrollY = $(window).scrollTop() + offset;
+        const scrollY = $(window).scrollTop();
 
         fadeElements.each(function () {
             fadeIn($(this), scrollY);
         });
 
         slideElements.each(function () {
-            slideIn($(this), scrollY);
+            slideInY($(this), scrollY);
         });
 
-        parallaxElements.each(function () {
-            const speed = $(this).data('parallax-speed') || 0.5;
-            const offset = scrollY * speed;
-            $(this).css('background-position', `center ${offset}px`);
+        animationElements.each(function () {
+            cssAnimation($(this), scrollY);
         });
     };
 
@@ -87,5 +116,9 @@ $(document).ready(function () {
     // 初期実行
     handleScroll();
     $copy.text('');
-    typeWriter();
+    $copy.addClass('invisible');
+    setTimeout(() => {
+        $copy.removeClass('invisible');
+        typeWriter();
+    }, 600);
 });

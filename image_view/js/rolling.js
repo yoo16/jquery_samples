@@ -4,7 +4,7 @@ $(document).ready(function () {
         const $topImage = $images.last();
 
         $topImage
-            .css('z-index', 100)
+            .css('z-index', 10)
             .animate({ opacity: 0.8, left: '100%', top: '-10x' }, 500,
                 function () {
                     $(this).css('z-index', 'auto');

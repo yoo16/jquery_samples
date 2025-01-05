@@ -1,57 +1,49 @@
+
 $(document).ready(function () {
+    const windowHeight = $(window).height();
+    const offset = windowHeight / 3;
+
     const targets = [
         { selector: "#section1 h2", callback: fadeIn },
         { selector: "#section2 img", callback: slideIn },
         { selector: "#section2 h2", callback: fadeIn },
         { selector: "#section3 h2", callback: fadeIn },
-        { selector: "#section4 img", callback: fadeIn },
+        { selector: "#section4", callback: slideLeft },
     ];
-
-    const windowHeight = $(window).height();
-    const offset = windowHeight / 3;
 
     $(window).on("scroll", function () {
         targets.forEach(({ selector, callback }) => {
+            console.log(selector)
             scrollAnimation(selector, callback);
         });
     });
 
     function scrollAnimation(selector, callback) {
         const scrollTop = $(window).scrollTop();
-        const target = $(selector);
-        const top = target.offset().top;
-        if (scrollTop + windowHeight > top + offset && target.hasClass('opacity-0')) {
-            target.removeClass('opacity-0');
-            if (callback) callback(target)
+        const top = $(selector).offset().top;
+        if (scrollTop + windowHeight > top + offset && $(selector).hasClass('invisible')) {
+            $(selector).removeClass('invisible');
+            if (callback) callback($(selector))
         }
     }
 
-    function fadeIn(target) {
-        target.css({ opacity: 0 })
+    function fadeIn(selector) {
+        $(selector).css({ opacity: 0 })
             .animate({ opacity: 1 }, 1000)
     }
 
-    function slideIn(target) {
-        target.css({ width: 0 })
-            .animate({ opacity: 1, width: '100%' }, 1000)
+    function slideIn(selector) {
+        $(selector).css({ opacity: 0, width: 0, })
+            .animate({ opacity: 1, width: '100%' }, 1000);
     }
 
-    function slideLeft(target) {
+    function slideLeft(selector) {
+        // 開始位置
         const start = $(window).width() * 0.5;
-        const end = target.css('left');
-        console.log(start, end)
-        target.css({ opacity: 0, left: start })
-            .animate({ opacity: 1, left: end }, 800);
+        // 終了位置
+        const end = $(selector).position().left || 0;
+        $(selector).css({ opacity: 0, position: 'relative', left: start + 'px' })
+            .animate({ opacity: 1, left: end + 'px' }, 800);
     }
 
-    function slideRight(target) {
-        const start = -$(window).width() * 0.5;
-        const end = target.css('left');
-        target.css({ opacity: 0, left: start })
-            .animate({ opacity: 1, left: end }, 800);
-    }
-
-    function shake(target) {
-        target.addClass('shake');
-    }
 });
