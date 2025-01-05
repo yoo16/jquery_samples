@@ -50,7 +50,6 @@
 .swiperStarted {
     transform: translate(0, 0) rotate(0deg);
 }
-
 .swiperStarted.is-active {
     transform: translate(0, 0) rotate(0deg);
     animation: swiperStarted 1.0s ease-in-out;
