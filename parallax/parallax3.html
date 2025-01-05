@@ -34,8 +34,7 @@
         <video class="fixed top-0 left-0 w-full h-full object-cover" autoplay muted loop>
             <source src="videos/video1.mp4" type="video/mp4">
         </video>
-        <h1
-            id="copy"
+        <h1 id="copy"
             class="type-writer z-10 text-6xl font-bold py-6 px-16 bg-white bg-opacity-30 backdrop-filter backdrop-blur-md rounded-2xl">
         </h1>
     </section>
@@ -70,35 +69,27 @@
 
 
     <!-- Parallax Image Section -->
-    <section id="story" class="z-10 relative parallax-bg h-screen text-center text-white fade-in"
-        style="background-image: url('images/cafe-shop-1.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
-        <div class="z-10 relative h-screen py-6 bg-teal-500 bg-opacity-80 backdrop-filter backdrop-blur-md">
+    <section id="story"
+        class="relative flex items-center justify-center h-screen text-center text-white bg-fixed bg-cover bg-center bg-no-repeat"
+        style="background-image: url('images/cafe-shop-1.jpg');">
+        <div
+            class="relative w-full h-screen py-6 bg-teal-500 bg-opacity-80 backdrop-blur-md flex flex-col items-center justify-center">
             <h2 class="text-4xl font-semibold my-4">Story</h2>
-            <p class="text-lg max-w-2xl mx-auto py-6 slide-in">
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-                <br>
-                We use cutting-edge technology and design to create immersive web experiences.
-            </p>
+            <div class="text-left text-lg max-w-2xl mx-auto py-6">
+                <p class="py-3">
+                    主人公、星野優月（ほしの ゆづき）は、名の知れた舞台演出家だが、その名声の裏で、実は彼女には隠された秘密があった。
+                    <br>
+                    過去に自分の家族が巻き込まれたスキャンダルをきっかけに、表舞台から消えることを決意し、裏方の世界での成功を目指した。
+                </p>
+                <p class="py-3">
+                    物語は、地方都市の小さな劇場を舞台に繰り広げられる。
+                    <br>
+                    優月は、この劇場で「世界に通じる舞台」を作るという夢を抱え、才能を秘めた若者たちを集めて劇団を結成する。
+                </p>
+                <p class="py-3">
+                    だが、劇団のメンバーたちにもそれぞれ秘密があり、葛藤を抱えていた。
+                </p>
+            </div>
         </div>
     </section>
 
@@ -106,8 +97,8 @@
     <section id="characters"
         class="z-10 relative h-full text-black py-6 bg-black text-white bg-opacity-60 backdrop-filter backdrop-blur-md">
         <h2 class="text-4xl font-semibold text-center py-10 fade-in">Characters</h2>
-        <div class="container mx-auto px-6 slide-in">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-10">
+        <div class="container mx-auto px-6">
+            <div class="slide-in grid grid-cols-1 md:grid-cols-3 gap-8 my-10">
                 <div>
                     <img src="images/character_1.png" alt="Character 1"
                         class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
@@ -127,7 +118,7 @@
                     <p class="">Description of the third Character offered.</p>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-10">
+            <div class="slide-in grid grid-cols-1 md:grid-cols-3 gap-8 my-10">
                 <div>
                     <img src="images/character_4.png" alt="Character 1"
                         class="mx-auto mb-4 rounded-2xl hover:scale-105 ">
@@ -152,7 +143,7 @@
 
     <!-- Footer -->
     <footer class="z-10 relative h-32 bg-black text-white flex items-center justify-center">
-        <p>&copy; 2024 Your Website</p>
+        <p>&copy; 2024 Parallax World</p>
     </footer>
 
     <script src="js/parallax3.js"></script>

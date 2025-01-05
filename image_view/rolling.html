@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolling View</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/rolling.css">
+</head>
+
+<body>
+    <header class="text-gray-800 py-8">
+        <h1 class="text-center text-2xl font-bold">Cafe JS</h1>
+    </header>
+    <main class="container mx-auto bg-white max-w-4xl">
+        <div id="image-container">
+            <div class="stacked-item">
+                <img class="stacked-image" src="images/item5.jpg">
+            </div>
+            <div class="stacked-item">
+                <img class="stacked-image" src="images/item4.jpg">
+            </div>
+            <div class="stacked-item">
+                <img class="stacked-image" src="images/item3.jpg">
+            </div>
+            <div class="stacked-item">
+                <img class="stacked-image" src="images/item2.jpg">
+            </div>
+            <div class="stacked-item">
+                <img class="stacked-image" src="images/item1.jpg">
+            </div>
+        </div>
+        <div class="mx-6 flex flex-col justify-center items-end max-w-4xl">
+            <div>
+                <button id="next-button1" class="circular-btn" style="z-index: 100;">
+                    Next
+                </button>
+            </div>
+            <div class="mt-4">
+                <button id="next-button2" class="circular-btn" style="z-index: 100;">
+                    Next
+                </button>
+            </div>
+        </div>
+        
+    </main>
+
+    <script src="js/rolling.js"></script>
+</body>
+
+</html>

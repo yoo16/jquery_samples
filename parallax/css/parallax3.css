@@ -5,7 +5,7 @@
   transition: opacity 1s ease, transform 1s ease;
 }
 
-      /* テキストや画像のスライドエフェクト */
+ /* テキストや画像のスライドエフェクト */
 .slide-in {
   opacity: 0;
   transform: translateX(-50px);

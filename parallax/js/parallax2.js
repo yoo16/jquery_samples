@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    const elementsToShow = [
+    const targets = [
         { selector: "#section1 h2", callback: fadeIn },
         { selector: "#section2 img", callback: slideIn },
         { selector: "#section2 h2", callback: fadeIn },
-        { selector: "#section3 h2", callback: slideLeft },
+        { selector: "#section3 h2", callback: fadeIn },
         { selector: "#section4 img", callback: fadeIn },
     ];
 
@@ -11,19 +11,15 @@ $(document).ready(function () {
     const offset = windowHeight / 3;
 
     $(window).on("scroll", function () {
-        elementsToShow.forEach(({ selector, callback }) => {
-            showContents(selector, callback);
+        targets.forEach(({ selector, callback }) => {
+            scrollAnimation(selector, callback);
         });
     });
 
-    function showContents(selector, callback) {
+    function scrollAnimation(selector, callback) {
         const scrollTop = $(window).scrollTop();
         const target = $(selector);
-
-        if (target.length === 0) return;
-
         const top = target.offset().top;
-
         if (scrollTop + windowHeight > top + offset && target.hasClass('opacity-0')) {
             target.removeClass('opacity-0');
             if (callback) callback(target)
@@ -53,5 +49,9 @@ $(document).ready(function () {
         const end = target.css('left');
         target.css({ opacity: 0, left: start })
             .animate({ opacity: 1, left: end }, 800);
+    }
+
+    function shake(target) {
+        target.addClass('shake');
     }
 });

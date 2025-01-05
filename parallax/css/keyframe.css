@@ -1,0 +1,261 @@
+@keyframes shake {
+    0% {
+        transform: rotate(0)
+    }
+
+    6%,
+    18%,
+    30%,
+    42% {
+        transform: rotate(15deg)
+    }
+
+    12%,
+    24%,
+    36% {
+        transform: rotate(-15deg)
+    }
+
+    48% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(0)
+    }
+}
+
+@keyframes loopAboutNegi01 {
+    0% {
+        transform: translateY(100%)
+    }
+
+    100% {
+        transform: translateY(-100%)
+    }
+}
+
+@keyframes loopAboutNegi02 {
+    0% {
+        transform: translateY(0%)
+    }
+
+    100% {
+        transform: translateY(-200%)
+    }
+}
+
+@keyframes loopMV01 {
+    0% {
+        transform: translateX(100%)
+    }
+
+    100% {
+        transform: translateX(-100%)
+    }
+}
+
+@keyframes loopMV02 {
+    0% {
+        transform: translateX(0%)
+    }
+
+    100% {
+        transform: translateX(-200%)
+    }
+}
+
+@keyframes textAnime {
+    0% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-0.3em)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+
+@keyframes textFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(0)
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-0.3em)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(0)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+}
+
+@keyframes jump {
+    0% {
+        opacity: 0;
+        transform: scale(1, 1) translateY(10%)
+    }
+
+    30% {
+        opacity: 1;
+        transform: scale(0.8, 1.1) translateY(-10%)
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.1, 0.8) translateY(0)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1, 1) translateY(0)
+    }
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(33.82vw)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100%)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes slideFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
+
+
+@keyframes jumpNegi {
+    0% {
+        transform: rotate(-73deg) translateX(0)
+    }
+
+    25% {
+        transform: rotate(-73deg) translateX(10%)
+    }
+
+    50% {
+        transform: rotate(-73deg) translateX(0)
+    }
+
+    75% {
+        transform: rotate(-73deg) translateX(10%)
+    }
+
+    100% {
+        transform: rotate(-73deg) translateX(0)
+    }
+}
+
+@keyframes swiperStarted {
+    0% {
+        transform: translate(0, 0)
+    }
+
+    50% {
+        transform: translate(500px, -200px) rotate(5deg)
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg)
+    }
+}
+
+@keyframes dotPoint {
+    0% {
+        transform: scale(0)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+}
+
+@keyframes dotLine {
+    0% {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0)
+    }
+
+    100% {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
+    }
+}
+
+@keyframes dotLinePC {
+    0% {
+        -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%)
+    }
+
+    100% {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
+    }
+}
+
+@keyframes fadeScaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.7)
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.06)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}

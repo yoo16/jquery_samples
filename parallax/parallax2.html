@@ -14,17 +14,21 @@
         <h1 class="text-4xl font-bold">Parallax Cafe</h1>
     </header>
 
-    <section id="section1" class="bg-white relative flex items-center justify-center h-screen overflow-hidden">
-        <h2 class="opacity-0 text-4xl text-black text-center font-bold flex items-center justify-center">心ほどける、甘くて香ばしいブレイクタイム</h2>
+    <section id="section1" class="relative flex items-center justify-center h-screen overflow-hidden">
+        <h2 data-callback="fadeIn" class="opacity-0 text-4xl text-black text-center font-bold flex items-center justify-center">
+            心ほどける、甘くて香ばしいブレイクタイム
+        </h2>
     </section>
 
     <section id="section2" class="relative flex items-center justify-center h-screen overflow-hidden">
         <img class="opacity-0 absolute w-full h-full object-cover" src="images/cafe-shop-1.jpg">
-        <h2 class="opacity-0 py-6 px-16 text-4xl font-bold text-white bg-black bg-opacity-60 backdrop-filter backdrop-blur-md">
-            Welcome to Parallax Cafe</h2>
+        <h2
+            class="opacity-0 py-6 px-16 text-4xl font-bold text-white bg-black bg-opacity-60 backdrop-filter backdrop-blur-md">
+            Welcome to Parallax Cafe
+        </h2>
     </section>
 
-    <section id="section3" class="relative flex items-center justify-center h-screen overflow-hidden">
+    <section id="section3" class="bg-white relative flex items-center justify-center h-screen overflow-hidden">
         <h2 class="opacity-0 text-4xl text-center font-bold space-y-4">
             <p>濃厚なチョコレートと</p>
             <p>クリーミーなホワイトクリームの</p>
@@ -32,8 +36,8 @@
         </h2>
     </section>
 
-    <section id="section4" class="relative flex items-center justify-center h-screen overflow-hidden">
-        <img class="opacity-0 absolute w-full h-full object-cover" src="images/item-1.jpg">
+    <section id="section4" class="container m-auto bg-white relative flex items-center justify-center h-screen overflow-hidden">
+        <img class="opacity-0 absolute object-cover rounded-2xl" src="images/item-1.jpg">
     </section>
 
     <script src="js/parallax2.js"></script>
