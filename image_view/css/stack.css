@@ -71,16 +71,15 @@ body {
 }
 
 /* CSSアニメーション */
-.stacked-item.animate-out {
-    transform: translate(500px, -200px) rotate(5deg) scale(1.05);
-    opacity: 1.0;
-    z-index: 100;
+.stacked-item.swipe-out {
+    transform: perspective(1000px) translate(500px, -200px) rotate(10deg) scale(1.05);
+    opacity: 1;
 
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.stacked-item.animate-in {
-    transform: translate(0, 0) rotate(0deg) scale(1.0);
+.stacked-item.swipe-in {
+    transform: perspective(1000px) translate(0, 0) rotate(0deg) scale(1.0);
     opacity: 0.5;
     z-index: auto;
 
