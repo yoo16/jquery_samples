@@ -58,11 +58,9 @@ $(document).ready(function () {
 
     function slideInY(target, scrollY) {
         var progress = getProgress(target, scrollY + slideOffset);
-        // progress += 0.3;
         if (progress > 0) {
             var translateY = (1 - progress);
             if (translateY < 0) translateY = 0;
-            console.log(progress)
             target.css({
                 opacity: progress,
                 transform: `translateY(${translateY}px)`,
