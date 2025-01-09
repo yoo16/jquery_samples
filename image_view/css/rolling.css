@@ -72,7 +72,6 @@ body {
 
 /* CSSアニメーション */
 .stacked-item.animate-out {
-    /* transform: translate(100%, -10px) scale(1.05); */
     transform: translate(500px, -200px) rotate(5deg) scale(1.05);
     opacity: 1.0;
     z-index: 100;

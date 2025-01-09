@@ -22,6 +22,11 @@ $(document).ready(function () {
 // CSS animate
 $(document).ready(function () {
     $('#next-button2').on('click', function () {
+        stackAnimation();
+    });
+    var isAnimation = false;
+    function stackAnimation() {
+        isAnimation = true;
         const $images = $('#image-container').children('.stacked-item');
         const $topImage = $images.last();
 
@@ -43,6 +48,11 @@ $(document).ready(function () {
                     $(this).removeClass('animate-in');
                 }, 500);
             }, 10);
+            isAnimation = false;
         });
-    });
+    }
+
+    setInterval(() => {
+        stackAnimation();
+    }, 5000);
 });
