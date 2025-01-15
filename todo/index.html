@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>TODOアプリ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="images/icon.png" />
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">TODOアプリ</h1>
+
+        <main>
+            <!-- フォームセクション -->
+            <section>
+                <form class="todoForm flex space-x-4">
+                    <input id="todo-input" type="text" class="flex-grow border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="TODOを入力してください" required>
+                    <input type="submit" class="submit bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 cursor-pointer"
+                        value="登録">
+                </form>
+            </section>
+
+            <!-- リストセクション -->
+            <section id="list" class="mt-6">
+                <ul id="todo-list" class="space-y-4">
+                    <!-- 動的に追加されるリスト -->
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
