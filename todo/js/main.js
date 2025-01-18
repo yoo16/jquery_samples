@@ -9,7 +9,7 @@ $(function () {
 	 */
 	function addTodo(text, isComplete) {
 		// リストアイテムをつくる
-		var $text = $('<span>').addClass('px-3 text').text(text);
+		var $text = $('<span>').addClass('text px-3').text(text);
 		var $checkbox = $('<input type="checkbox">');
 		var $remove = $('<span>').text('削除').addClass('p-2 text-xs bg-red-500 text-white rounded');
 
@@ -28,7 +28,7 @@ $(function () {
 		}
 
 		/**
-		 * チェックボックスをクリックしたときの処理
+		 * チェックボックスクリックイベント
 		 */
 		$checkbox.on('click', function () {
 			if ($(this).is(':checked')) {
@@ -42,14 +42,14 @@ $(function () {
 		});
 
 		/**
-		 * テキストをクリックしたときの処理
+		 * テキストクリックイベント
 		 */
 		$text.on('click', function () {
 			$checkbox.trigger('click');
 		});
 
 		/*
-		* 削除をクリックしたときの処理
+		* 削除イベント
 		*/
 		$remove.on('click', function () {
 			if (window.confirm('削除してよろしいですか？')) {

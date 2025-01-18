@@ -2,47 +2,101 @@ $(function () {
     const stage = $('#stage')
     const items = [];
 
-    // レイアウト関連定数
-    const maxCol = 4;
-    const maxRow = 2;
-    const wheelSpeed = 0.5;
-    const vRate = 0.95;
-    // ランダムサイズフラグ
-    const isRandomSize = false;
+    // 画像固定
+    const isFixed = true;
+    const backgroundSize = 0;
 
+    // レイアウト関連定数
+    // アイテム数 16 = 4 x 4, 8 x 2
+    const maxCol = 4;
+    const maxRow = 4;
+
+    // セルの大きさ
+    const cellRate = 0.6
+
+    // ホイールスピード
+    const wheelSpeed = 0.7;
+    // 加速レート
+    const vRate = 0.95;
+
+    // 変数
     // ポインターダウン判別
     let pointerDown = false;
 
-    let H = 0, W = 0, R = 0;
+    // ウィンドウ幅・高さ
+    let H = 0, W = 0
+    // ウィンドウサイズレート
+    let R = 0;
+    // ウィンドウ座標
     let X = 0, Y = 0;
+    // スクロール座標
     let scrollX = 0, scrollY = 0;
-    let offsetX = 0, offsetY = 0;
+    // 画像オフセット
+    let offsetX = 0, offsetY = -20;
+    // 目標位置
     let targetX = 0, targetY = 0;
+    // 最終位置
     let lastX = 0, lastY = 0;
+    // 速度
     let vx = 0, vy = 0
 
-    worksData.forEach(data => {
+    // アイテムリスト作成
+    worksData.forEach((data, index) => {
         // アイテム作成
-        const workEl = createWorkElement(data);
+        const workElement = createWorkElement(data);
 
         // ステージにアイテム追加
-        stage.append(workEl);
+        stage.append(workElement[0]);
 
-        // itemsにデータ追加
+        // 列番号
+        data.col = index % maxCol;
+        // 行番号
+        data.row = Math.floor(index / maxCol);
+
+        // items にデータ追加
         items.push({
-            work: workEl[0],
-            image: workEl.find(".image")[0],
-            position: { x: data.x, y: data.y, r: data.r }
+            data: data,
+            element: workElement[0],
+            image: workElement.find(".image")[0],
+            position: { x: data.col, y: data.row, r: data.r }
         });
     });
 
+    // アイテム作成
+    function createWorkElement(data) {
+        // 画像領域
+        const work = $("<div>").addClass("work")
+        // アイテムクリックイベント
+        work.on('click', function () {
+            // リンク
+            location.href = data?.href;
+        });
+
+        // 画像
+        const image = $("<div>").addClass("image")
+            .css("background-image", `url('${data.image}')`)
+        if (backgroundSize) {
+            image.css('background-size', backgroundSize);
+        }
+
+        // 図形
+        if (data.mask) image.addClass(data.mask);
+
+        // タイトル
+        const title = $("<h2>").text(data.title).addClass("work-title");
+        work.append(image);
+        work.append(title);
+        return work;
+    }
+
+    // マウスホイールの移動量で速度計算
     function onWheel(event) {
-        // マウスホイールの移動量で速度計算
         vx = event.deltaX * wheelSpeed;
         vy = event.deltaY * wheelSpeed;
         event.preventDefault();
     }
 
+    // ポインターダウン
     function onPointerDown(event) {
         pointerDown = true;
         lastX = event.pageX;
@@ -51,13 +105,14 @@ $(function () {
         vy = 0;
     }
 
+    // ポインター移動
     function onPointerMove(event) {
         if (pointerDown) {
             // マウスポインタの現在位置を取得
             const pageX = event.pageX;
             const pageY = event.pageY;
 
-            // 移動速度（vx, vy）を計算
+            // 移動速度を計算
             vx = -(pageX - lastX);
             vy = -(pageY - lastY);
 
@@ -73,6 +128,7 @@ $(function () {
         pointerDown = false;
     }
 
+    // リサイズ
     function onResize() {
         const lastR = R;
         const ratio = R / lastR;
@@ -80,9 +136,9 @@ $(function () {
         targetY *= ratio;
         X *= ratio;
         Y *= ratio;
-        reset();
     }
 
+    // リセット
     function reset() {
         // 初期動作用
         vx = 0.01;
@@ -92,94 +148,84 @@ $(function () {
         W = window.innerWidth;
         H = window.innerHeight;
 
-        // 表示領域の中央を基準にしたオフセット値(offsetX, offsetY)
-        offsetX = -W * 0.5;
-        offsetY = -H * 0.5;
-
         // アイテムの位置やサイズの基準となる値
-        R = Math.min(W * 0.5, H * 0.5);
+        // 各セルの幅と高さを計算
+        R = Math.min(W * cellRate, H * cellRate);
 
         // アイテムの位置を設定
         items.forEach(item => {
-            item.work.style.left = (item.position.x * R) + "px";
-            item.work.style.top = (item.position.y * R) + "px";
+            let x = item.data.col * R + item.data.x;
+            item.element.style.left = `${x}px`;
+
+            // 行の位置
+            let y = item.data.row * R + item.data.y;
+            item.element.style.top = `${y}px`;
         });
 
         // スクロール範囲の計算
         scrollX = maxCol * R;
         scrollY = maxRow * R;
 
-        // ウィンドウ比率による調整
-        // 横方向: wRate 
-        // 縦方向: hRate 
-        const wRate = W / (H * (maxCol - 1));
-        const hRate = H / (W * (maxRow - 1));
-
-        // 横方向または縦方向の比率が1を超える場合、アイテム座標調整&スクロール範囲拡大
-        if (wRate > 1) {
-            // 横方向
-            items.forEach(item => item.position.x *= wRate);
-            scrollX *= wRate;
-        } else if (hRate > 1) {
-            // 縦方向
-            items.forEach(item => item.position.y *= hRate);
-            scrollY *= hRate;
-        }
-
         // 画像位置調整
         items.forEach(item => {
-            // ランダムサイズ
-            if (isRandomSize) {
-                item.position.r = 0.6 + Math.random() * 0.4;
-            }
-
             const holeR = item.position.r * R;
             $(item.image).css({
                 width: `${holeR}px`,
-                height: `${holeR}px`,
-                backgroundPosition: `${offsetX}px ${offsetY}px`
+                height: `${holeR}px`
             });
         });
     }
 
+    // 更新処理
     function update() {
-        // 現在のX軸とY軸の速度
+        // 現在のX軸とY軸の速度を減速
         vx *= vRate;
         vy *= vRate;
 
-        // 目標位置
+        // 目標位置を更新
         targetX -= vx;
         targetY -= vy;
 
         if (targetX !== X || targetY !== Y) {
             // 現在の位置を目標位置に近づける
-            X += (targetX - X) * 0.5;
-            Y += (targetY - Y) * 0.5;
+            X += (targetX - X);
+            Y += (targetY - Y);
 
             // ステージ全体の位置を更新
             stage.css("transform", `translate(${X}px, ${Y}px)`);
 
             // アイテムごとの位置を更新
-            items.forEach(item => {
-                let frameX = X + item.position.x * R;
-                let frameY = Y + item.position.y * R;
-                let frameSize = item.position.r * R * 0.5;
+            items.forEach((item) => {
+                // アイテムのフレーム位置を計算
+                let frameX = item.position.x * R + item.data.x + X;
+                let frameY = item.position.y * R + item.data.y + Y;
 
-                // アイテムが一定範囲を超えた場合に再配置（X軸）
-                if (Math.round((frameX + frameSize) / scrollX) !== 0) {
-                    item.position.x -= (Math.round((frameX + frameSize)) > 0) ? scrollX / R : -scrollX / R;
-                    $(item.work).css("left", `${item.position.x * R}px`);
-                    frameX = X + item.position.x * R;
+                // フレームサイズを計算
+                let frameSize = item.position.r * R;
+
+                // X軸の再配置条件
+                if (frameX + frameSize < 0 || frameX + frameSize > scrollX) {
+                    item.position.x += (frameX + frameSize < 0 ? scrollX / R : -scrollX / R);
+                    $(item.element).css("left", `${item.position.x * R + item.data.x}px`);
+                    frameX = item.position.x * R + item.data.x + X;
                 }
 
-                // アイテムが一定範囲を超えた場合に再配置（Y軸）
-                if (Math.round((frameY + frameSize) / scrollY) !== 0) {
-                    item.position.y -= (Math.round((frameY + frameSize)) > 0) ? scrollY / R : -scrollY / R;
-                    $(item.work).css("top", `${item.position.y * R}px`);
-                    frameY = Y + item.position.y * R;
+                // Y軸の再配置条件
+                if (frameY + frameSize < 0 || frameY + frameSize > scrollY) {
+                    item.position.y += (frameY + frameSize < 0 ? scrollY / R : -scrollY / R);
+                    $(item.element).css("top", `${item.position.y * R + item.data.y}px`);
+                    frameY = item.position.y * R + item.data.y + Y;
                 }
                 // 背景位置の更新
-                $(item.image).css("background-position", `${offsetX - frameX}px ${offsetY - frameY}px`);
+                let backgroundX = offsetX - frameX + item.data.image_x;
+                let backgroundY = offsetY - frameY + item.data.image_y;
+                if (!isFixed) {
+                    const progressX = X / targetX * 0.5;
+                    const progressY = Y / targetY * 0.5;
+                    backgroundX += (X * progressX)
+                    backgroundY += (Y * progressY)
+                }
+                $(item.image).css("background-position", `${backgroundX}px ${backgroundY}px`);
             });
         }
 
@@ -187,76 +233,15 @@ $(function () {
         window.requestAnimationFrame(update);
     }
 
-    function createWorkElement(data) {
-        // 画像領域
-        const work = $("<div>")
-            .addClass("work")
-            .attr("data-pos", { x: data.x, y: data.y, r: data.r });
 
-        // 画像
-        const image = $("<div>")
-            .addClass("image")
-            .css("background-image", `url('${data.image}')`)
-            .on({
-                mouseover: function () {
-                    $(this).animate({ opacity: 0.8 }, 300);
-                },
-                mouseout: function () {
-                    $(this).animate({ opacity: 1.0 }, 300);
-                },
-                click: function () {
-                    // クリック時にモーダルウィンドウでフル表示
-                    if (data.href) {
-                        location.href = data.href;
-                    } else {
-                        showModal(data.image);
-                    }
-                }
-            });
-
-        work.append(image);
-
-        return work;
-    }
-
-    function showModal(imageUrl) {
-        // モーダル背景
-        const modalOverlay = $("<div>")
-            .addClass("modal-overlay")
-
-        // モーダルウィンドウ
-        const modalContent = $("<div>")
-            .addClass("modal-content")
-            .on("click", function () {
-                modalOverlay.fadeOut(300, function () {
-                    $(this).remove();
-                });
-                modalContent.fadeOut(300, function () {
-                    $(this).remove();
-                });
-            });
-
-        // フルサイズ画像
-        const fullImage = $("<img>")
-            .addClass("full-image")
-            .attr('src', imageUrl)
-
-        // モーダル構造を組み立て
-        modalContent.append(fullImage);
-        $("body").append(modalOverlay).append(modalContent);
-
-        // モーダル表示
-        modalOverlay.fadeIn(300);
-        modalContent.fadeIn(300);
-    }
-
-    // イベントリスナー(jQueryのイベント登録はバグが発生)
+    // イベントリスナー
     document.addEventListener('wheel', onWheel, { passive: false });
     document.addEventListener('pointerdown', onPointerDown);
     document.addEventListener('pointermove', onPointerMove, { passive: false });
     document.addEventListener('pointerup', onPointerUp);
     window.addEventListener('resize', onResize);
 
+    // 初期処理
     reset();
     update();
 });
