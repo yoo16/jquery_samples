@@ -4,10 +4,14 @@
 //  })
 
 $("#click-button").on("click", function () {
-    $("#result-event").text('クリックしました')
+    var userName = $('#input-text').val();
+    if (userName) {
+        var message = userName + "さん、ようこそ！";
+        $("#result-event").text(message)
+    }
 });
 
-$("#select-list").on("change", function () {
+$("#item-list").on("change", function () {
     // const selected = $(this).val();
     const selected = $(this).find("option:selected").text();
     const message = selected + "が選択されました";
@@ -27,20 +31,20 @@ $('#input-text').on({
     }
 });
 
-$('#item-list').on('click', 'li', function () {
-    const message = $(this).text() + "が選択されました"
+$('#size-list').on('click', 'li', function () {
+    const message = $(this).text() + "サイズが選択されました"
     $("#result-event").text(message)
 
-    $('#item-list li').removeClass('bg-orange-100')
+    $('#size-list li').removeClass('bg-orange-100')
     $(this).addClass('bg-orange-100')
 });
 
 const mouseOverHandler = function (event) {
-    $(this).text('マウスオーバー')
+    $(this).addClass('bg-blue-100')
 }
 
 const mouseOutHandler = function (event) {
-    $(this).text('')
+    $(this).removeClass('bg-blue-100')
 }
 
 $('#box').on('mouseover', mouseOverHandler)
