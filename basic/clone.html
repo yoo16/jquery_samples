@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tailwind レスポンシブ レイアウト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <header class="bg-indigo-600 text-white">
+        <div class="container mx-auto py-4 px-6 flex justify-between items-center">
+            <h1 class="text-xl font-bold">My App</h1>
+            <nav class="space-x-4 hidden sm:block">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">About</a>
+                <a href="#" class="hover:underline">Contact</a>
+            </nav>
+            <!-- ハンバーガー：モバイル用 -->
+            <button class="sm:hidden">☰</button>
+        </div>
+    </header>
+
+    <main class="flex-1 container mx-auto px-6 py-8 grid gap-8 lg:grid-cols-[240px_1fr]">
+
+        <!-- Content -->
+        <section class="space-y-8">
+            <!-- カードグリッド例 -->
+            <h2 class="text-xl font-semibold">カード一覧</h2>
+            <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                <!-- 12枚ダミーカード -->
+                <template id="card">
+                    <div class="bg-white rounded-xl shadow hover:shadow-md transition p-6">
+                        <h3 class="text-lg font-medium mb-2">タイトル</h3>
+                        <p class="text-sm text-gray-600">カード本文が入ります。</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-100 text-center py-4">
+        <small class="text-gray-500">&copy; 2025 My App</small>
+    </footer>
+
+    <script src="js/clone.js"></script>
+</body>
+
+</html>
