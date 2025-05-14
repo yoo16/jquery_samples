@@ -49,7 +49,7 @@ $(function () {
     });
 
     $('#btn-remove').on('click', function () {
-        if (selected) {
+        if (selected.length) {
             selected.remove();
             selected = $();
         } else {

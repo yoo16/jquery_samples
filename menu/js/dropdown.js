@@ -19,7 +19,7 @@ $(function () {
     $menuLink.on('click', function (e) {
         e.preventDefault();
         const anchor = this.getAttribute('href');
-        if (target) {
+        if (anchor) {
             const targetOffset = $(anchor).offset().top;
             $('html, body').stop().animate({
                 scrollTop: targetOffset

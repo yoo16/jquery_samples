@@ -11,13 +11,6 @@ $("#click-button").on("click", function () {
     }
 });
 
-$("#item-list").on("change", function () {
-    // const selected = $(this).val();
-    const selected = $(this).find("option:selected").text();
-    const message = selected + "が選択されました";
-    $("#result-event").text(message);
-});
-
 $('#input-text').on({
     input: function () {
         const inputText = $(this).val()
@@ -31,26 +24,37 @@ $('#input-text').on({
     }
 });
 
-$('#size-list').on('click', 'li', function () {
-    const message = $(this).text() + "サイズが選択されました"
-    $("#result-event").text(message)
 
-    $('#size-list li').removeClass('bg-orange-100')
-    $(this).addClass('bg-orange-100')
+// change イベント
+$('#character-select').on('change', function () {
+    const charId = $(this).val();
+    const imagePath = `images/character_${charId}.png`;
+    $('#character-image').attr('src', imagePath);
 });
 
+// click イベント
+$('#character-list li').on('click', function () {
+    const charId = $(this).data('character'); // 1, 2, 3...
+    const imagePath = `images/character_${charId}.png`;
+    $('#character-image').attr('src', imagePath);
+});
+
+// mouseイベントハンドラー
 const mouseOverHandler = function (event) {
-    $(this).addClass('bg-blue-100')
+    $(this).attr('src', 'images/character_5.png');
 }
 
 const mouseOutHandler = function (event) {
-    $(this).removeClass('bg-blue-100')
+    $(this).attr('src', 'images/character_4.png');
 }
 
-$('#box').on('mouseover', mouseOverHandler)
-$('#box').on('mouseout', mouseOutHandler)
+// mouseイベント
+$('#hoverBox')
+    .on('mouseover', mouseOverHandler)
+    .on('mouseout', mouseOutHandler);
 
+// mouseイベント削除
 $('#event-off-button').on('click', function () {
-    $('#box').off('mouseover', mouseOverHandler)
-    $('#box').off('mouseout', mouseOutHandler)
+    $('#hoverBox').off('mouseover', mouseOverHandler)
+    $('#hoverBox').off('mouseout', mouseOutHandler)
 });
